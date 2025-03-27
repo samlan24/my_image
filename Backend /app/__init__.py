@@ -11,5 +11,7 @@ def create_app():
     #registering blueprints
     from .conversion import convert
     app.register_blueprint(convert)
+    from .croping import crop
+    app.register_blueprint(crop)
 
     return app
