@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Convert from './components/Convert';
 import Desktop_Nav from './components/Desktop_Nav';
+import ImageCropper from './components/ImageCropper';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Desktop_Nav />
         <Routes>
           <Route path="/convert" element={<Convert />} />
+          <Route path="/crop" element={<ImageCropper />} />
           <Route path="/" element={<Home />} />
         </Routes>
       </Router>
