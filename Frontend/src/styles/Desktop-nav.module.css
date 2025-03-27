@@ -1,0 +1,87 @@
+.desktop_nav {
+    display: flex;
+    padding: 2rem 0;
+    width: 100%;
+    justify-content:center;
+    align-items: center;
+  }
+
+
+
+
+.nav {
+    display: flex;
+    margin-left: 3rem;
+    gap: 2rem;
+    justify-content: center;
+}
+
+.nav_item {
+    font-size: 1rem;
+    font-weight: var(--font-weight);
+    position: relative;
+    text-decoration: none;
+    padding-bottom: 5px;
+}
+
+.nav_item::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: rgb(182, 184, 191);;
+    bottom: 0;
+    left: 50%;
+    transition: width 0.3s ease, left 0.3s ease;
+}
+
+.nav_item:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+.nav_item.active::after {
+    width: 100%;
+    left: 0;
+}
+
+
+.active {
+    font-weight: bold;
+}
+
+.active::after {
+    width: 100%;
+    left: 0;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-right: 3rem;
+}
+
+.listing_button {
+    background-color: var(--button-color);
+    color: var(--primary-color);
+    padding: 0.5rem 1rem;
+    border-radius: 2em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.5s;
+    transition: transform 0.5s ease;
+}
+
+.listing_button:hover {
+    background-color: var(--button-hover-color);
+    transform: translateY(-5px);
+}
+
+.signup_button {
+    font-weight: 500;
+}
+
+.login_button {
+    font-weight: 500;
+}

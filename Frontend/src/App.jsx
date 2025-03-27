@@ -1,15 +1,22 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import './App.css';
 import Convert from './components/Convert';
+import Desktop_Nav from './components/Desktop_Nav';
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/convert" element={<Convert />} />
-        <Route path="/" element={<Home />} />
-      </Routes>
-    </Router>
+    <div className='main_container'>
+      <Router>
+        <Desktop_Nav />
+        <Routes>
+          <Route path="/convert" element={<Convert />} />
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </Router>
+
+    </div>
+
   );
 }
 
