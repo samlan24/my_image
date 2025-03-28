@@ -13,5 +13,7 @@ def create_app():
     app.register_blueprint(convert)
     from .croping import crop
     app.register_blueprint(crop)
+    from .compression import compress
+    app.register_blueprint(compress)
 
     return app
