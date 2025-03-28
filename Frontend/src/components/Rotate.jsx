@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
+import Content from './Content';
 
 const ImageRotator = () => {
   const [file, setFile] = useState(null);
@@ -186,6 +187,7 @@ const ImageRotator = () => {
       </button>
 
       {error && <div className="error">{error}</div>}
+      <Content />
     </div>
   );
 };

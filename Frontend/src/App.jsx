@@ -7,6 +7,8 @@ import ImageCropper from './components/ImageCropper';
 import ImageCompressor from './components/Compress';
 import ImageRotator from './components/Rotate';
 
+
+
 function App() {
   return (
     <div className='main_container'>

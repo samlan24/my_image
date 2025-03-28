@@ -11,10 +11,10 @@ const Desktop_Nav = () => {
             </Link>
         </div>
         <div className={styles.nav}>
-            <Link to='/convert' className={styles.nav_item}>Convert Images</Link>
-            <Link to='/compress' className={styles.nav_item}>Compress Images</Link>
-            <Link to='/crop' className={styles.nav_item}>Crop Images</Link>
-            <Link to='/rotate' className={styles.nav_item}>Rotate Images</Link>
+            <Link to='/convert' className={styles.nav_item}>CONVERT IMAGES</Link>
+            <Link to='/compress' className={styles.nav_item}>COMPRESS IMAGES</Link>
+            <Link to='/crop' className={styles.nav_item}>CROP IMAGES</Link>
+            <Link to='/rotate' className={styles.nav_item}>ROTATE IMAGES</Link>
         </div>
 
     </div>

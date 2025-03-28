@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import axios from 'axios';
 import styles from '../styles/Convert.module.css';
 import { useNavigate } from 'react-router-dom';
+import Content from './Content';
 
 function Convert() {
   const [file, setFile] = useState(null);
@@ -121,6 +122,7 @@ function Convert() {
           </button>
         </div>
       )}
+      <Content />
     </div>
   );
 }

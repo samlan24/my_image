@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Content from './Content';
 
 const ImageCompressor = () => {
   const [preview, setPreview] = useState(null);
@@ -213,6 +214,7 @@ const ImageCompressor = () => {
           </button>
         </div>
       )}
+      <Content />
     </div>
   );
 };
