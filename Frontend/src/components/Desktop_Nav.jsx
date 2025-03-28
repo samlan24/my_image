@@ -16,6 +16,8 @@ const Desktop_Nav = () => {
             <Link to='/compress' className={styles.nav_item}>COMPRESS IMAGES</Link>
             <Link to='/crop' className={styles.nav_item}>CROP IMAGES</Link>
             <Link to='/rotate' className={styles.nav_item}>ROTATE IMAGES</Link>
+            <Link to='/resize' className={styles.nav_item}>RESIZE IMAGES</Link>
+            <Link to='/youtube' className={styles.nav_item}>THUMBNAIL DOWNLOADER</Link>
         </div>
 
     </div>

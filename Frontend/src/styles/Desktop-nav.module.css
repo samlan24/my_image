@@ -2,15 +2,9 @@
     display: flex;
     align-items: center;
     justify-content: center; /* Keeps nav centered */
-    padding: 2rem 0;
+    padding: 0;
     width: 100%;
     border-bottom: 1px solid gray;
-    position: relative; /* Needed for absolute positioning of the logo */
-}
-
-.logo {
-    position: absolute;
-    left: 2rem; /* Moves logo to the left */
 }
 
 .logo img {
