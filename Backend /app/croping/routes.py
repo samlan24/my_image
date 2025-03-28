@@ -27,7 +27,7 @@ def is_valid_image(stream):
 
 @crop.route("/", methods=["POST"])
 def crop_image():
-    # Existing file validation checks from your convert endpoint
+
     if "file" not in request.files:
         return {"error": "No file uploaded"}, 400
 
@@ -42,28 +42,28 @@ def crop_image():
         return {"error": "Uploaded file is not a valid image"}, 400
 
     try:
-        # Get cropping coordinates from request
+
         crop_data = request.form.get("crop", "")
         if not crop_data:
             return {"error": "No crop data provided"}, 400
 
-        # Parse crop data (x, y, width, height)
+
         try:
             x, y, w, h = map(float, crop_data.split(','))
         except ValueError:
             return {"error": "Invalid crop format. Expected x,y,width,height"}, 400
 
-        # Open and verify image
+
         file.stream.seek(0)
         image = Image.open(file.stream)
         image.verify()
         file.stream.seek(0)
         image = Image.open(file.stream)
 
-        # Perform cropping
+
         cropped_image = image.crop((x, y, x + w, y + h))
 
-        # Save to buffer
+
         img_io = io.BytesIO()
         format = file.filename.rsplit('.', 1)[1].lower()
         if format == 'jpg':

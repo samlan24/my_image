@@ -4,6 +4,7 @@ import './App.css';
 import Convert from './components/Convert';
 import Desktop_Nav from './components/Desktop_Nav';
 import ImageCropper from './components/ImageCropper';
+import ImageCompressor from './components/Compress';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Routes>
             <Route path="/convert" element={<Convert />} />
             <Route path="/crop" element={<ImageCropper />} />
+            <Route path="/compress" element={<ImageCompressor />} />
             <Route path="/" element={<Home />} />
           </Routes>
         </div>

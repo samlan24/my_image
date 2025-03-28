@@ -9,7 +9,7 @@ function Convert() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const [convertedImage, setConvertedImage] = useState(null);
-  const fileInputRef = useRef(null); // Create ref for file input
+  const fileInputRef = useRef(null);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {

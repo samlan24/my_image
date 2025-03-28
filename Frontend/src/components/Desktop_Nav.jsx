@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import styles from '../styles/Desktop-nav.module.css';
-import logo from '../assets/music.svg';
+
 
 const Desktop_Nav = () => {
   return (
