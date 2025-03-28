@@ -7,7 +7,7 @@ const Desktop_Nav = () => {
     <div className={styles.desktop_nav}>
         <div className='logo'>
             <Link to="/">
-                <img src={logo} alt="image Logo" width="150"/>
+                <h1>Image Tool</h1>
             </Link>
         </div>
         <div className={styles.nav}>

@@ -72,10 +72,6 @@ function Convert() {
 
   return (
     <div className={styles.convert_container}>
-      <button onClick={() => navigate('/')} className={styles.back_button}>
-        ← Back to Home
-      </button>
-
       <h1>Image Converter</h1>
 
       <form onSubmit={handleSubmit}>

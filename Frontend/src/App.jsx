@@ -10,11 +10,13 @@ function App() {
     <div className='main_container'>
       <Router>
         <Desktop_Nav />
-        <Routes>
-          <Route path="/convert" element={<Convert />} />
-          <Route path="/crop" element={<ImageCropper />} />
-          <Route path="/" element={<Home />} />
-        </Routes>
+        <div className='content'>
+          <Routes>
+            <Route path="/convert" element={<Convert />} />
+            <Route path="/crop" element={<ImageCropper />} />
+            <Route path="/" element={<Home />} />
+          </Routes>
+        </div>
       </Router>
 
     </div>
