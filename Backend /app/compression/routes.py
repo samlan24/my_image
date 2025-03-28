@@ -41,10 +41,6 @@ def process_image(file, options):
     original_size = file.tell()  # Get file size in bytes
     file.seek(0)  # Reset file pointer
 
-    # Apply transformations
-    if options.get("strip_metadata"):
-        img.info = {}  # Remove EXIF/ICC
-
     if options.get("dither") and original_format == "png":
         img = img.convert("P", palette=Image.Palette.ADAPTIVE, dither=Image.Dither.FLOYDSTEINBERG)
 
@@ -99,7 +95,6 @@ def compress_image():
             "optimize": request.form.get("optimize") != "false",
             "progressive": request.form.get("progressive") == "true",
             "dither": request.form.get("dither") == "true",
-            "strip_metadata": request.form.get("strip_metadata") == "true",
             "subsampling": request.form.get("subsampling", "1")
         })
 

@@ -4,13 +4,12 @@ from PIL import Image, UnidentifiedImageError
 import io
 import imghdr
 
-ALLOWED_FORMATS = {"png", "jpg", "jpeg", "webp", "gif"}
+ALLOWED_FORMATS = {"png", "jpg", "jpeg", "webp"}
 QUALITY_PARAMS = {
     "jpg": {"quality": 95, "subsampling": 0},
     "jpeg": {"quality": 95, "subsampling": 0},
     "webp": {"quality": 100, "method": 6},
     "png": {"compress_level": 6},
-    "gif": {}
 }
 
 def is_allowed_file(filename):
