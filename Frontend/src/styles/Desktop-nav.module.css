@@ -1,8 +1,7 @@
 .desktop_nav {
     display: flex;
     align-items: center;
-    justify-content: center; /* Keeps nav centered */
-    padding: 0;
+    justify-content: center;
     width: 100%;
     border-bottom: 1px solid gray;
 }

@@ -1,0 +1,129 @@
+.container {
+    display: flex;
+    height: 100vh;
+    padding: 20px;
+    gap: 40px;
+  }
+
+  .preview {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+
+  .previewImage {
+    max-width: 100%;
+    max-height: 80vh;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .placeholder {
+    color: #95a5a6;
+    font-style: italic;
+  }
+
+  .controls {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .title {
+    margin: 0 0 20px 0;
+    color: #2c3e50;
+    text-align: center;
+  }
+
+  .uploadSection {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .uploadButton {
+    padding: 12px;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s;
+  }
+
+  .uploadButton:hover {
+    background: #2980b9;
+  }
+
+  .presetSection, .dimensionSection {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .label {
+    font-weight: 500;
+    color: #34495e;
+  }
+
+  .select, .input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+
+  .select {
+    width: 100%;
+  }
+
+  .dimensionInputs {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .dimensionSeparator {
+    color: #7f8c8d;
+  }
+
+  .dimensionUnit {
+    color: #7f8c8d;
+    font-size: 14px;
+  }
+
+  .resizeButton {
+    padding: 12px;
+    background: #2ecc71;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s;
+    margin-top: 10px;
+  }
+
+  .resizeButton:hover {
+    background: #27ae60;
+  }
+
+  .resizeButton:disabled {
+    background: #bdc3c7;
+    cursor: not-allowed;
+  }
+
+  .resizeButton.processing {
+    background: #f39c12;
+  }

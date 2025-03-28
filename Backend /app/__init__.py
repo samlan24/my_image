@@ -17,5 +17,7 @@ def create_app():
     app.register_blueprint(compress)
     from .rotating import rotate
     app.register_blueprint(rotate)
+    from .resizing import resize
+    app.register_blueprint(resize)
 
     return app
