@@ -1,0 +1,150 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: var(--primary-color);
+  }
+
+  .fileInputContainer {
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .fileInput {
+    display: none;
+  }
+
+  .fileInputLabel {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: #e6f2ff;
+    color: #0066cc;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    border: 1px solid #b3d1ff;
+  }
+
+  .fileInputLabel:hover {
+    background-color: #cce0ff;
+  }
+
+  .fileName {
+    display: block;
+    margin-top: 0.5rem;
+    color: #666;
+  }
+
+  .previewContainer {
+    width: 100%;
+    min-height: 400px;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background-color: #e6f7ff;
+    border-radius: 8px;
+    border: 1px solid #b3e0ff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .previewPlaceholder {
+    color: #66b3ff;
+    font-size: 1.2rem;
+    text-align: center;
+  }
+
+  .imageWrapper {
+    max-width: 100%;
+    max-height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .previewImage {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+  }
+
+  .rotationControls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    margin: 1rem 0;
+  }
+
+  .rotationButton {
+    padding: 0.5rem 1rem;
+    background-color: #f0f7ff;
+    color: #0066cc;
+    border: 1px solid #99c2ff;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .rotationButton:hover {
+    background-color: #d9ecff;
+  }
+
+  .rotationButton:disabled {
+    background-color: #f0f0f0;
+    color: #999;
+    border-color: #ddd;
+    cursor: not-allowed;
+  }
+
+  .angleDisplay {
+    min-width: 120px;
+    text-align: center;
+    font-weight: 600;
+    color: #0066cc;
+  }
+
+  .downloadBtn {
+    display: block;
+    margin: 1.5rem auto;
+    padding: 0.75rem 1.5rem;
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+
+  .downloadBtn:hover {
+    background-color: #0052a3;
+  }
+
+  .downloadBtn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+
+  .error {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background-color: #ffebee;
+    color: #c62828;
+    border-radius: 4px;
+    text-align: center;
+  }

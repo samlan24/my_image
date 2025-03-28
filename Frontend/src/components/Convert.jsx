@@ -72,56 +72,93 @@ function Convert() {
   };
 
   return (
-    <div className={styles.convert_container}>
-      <h1>Image Converter</h1>
+    <div className={styles.container}>
+      <h1 className={styles.title}>Image Converter</h1>
 
-      <form onSubmit={handleSubmit}>
-        <div className={styles.form_group}>
-          <label>Select Image:</label>
-          <input
-            type="file"
-            ref={fileInputRef} // Attach the ref
-            onChange={handleFileChange}
-            accept="image/*"
-            required
-          />
+      <div className={styles.fileInputContainer}>
+        <input
+          type="file"
+          id="file"
+          ref={fileInputRef}
+          onChange={handleFileChange}
+          accept="image/*"
+          className={styles.fileInput}
+          disabled={isLoading}
+        />
+        <label htmlFor="file" className={styles.fileInputLabel}>
+          Select Image
+        </label>
+        {file && <span className={styles.fileName}>{file.name}</span>}
+      </div>
+
+      <div className={styles.previewSection}>
+        <div className={styles.imageContainer}>
+          <p className={styles.imageContainerTitle}>Original Image</p>
+          {file ? (
+            <div className={styles.imageWrapper}>
+              <img
+                src={URL.createObjectURL(file)}
+                alt="Original Preview"
+                className={styles.previewImage}
+              />
+            </div>
+          ) : (
+            <div className={styles.imageWrapper}>
+              <p>No image selected</p>
+            </div>
+          )}
         </div>
+      </div>
 
-        <div className={styles.form_group}>
-          <label>Target Format:</label>
-          <select
-            value={format}
-            onChange={(e) => {
-              setFormat(e.target.value);
-              setConvertedImage(null);
-            }}
-          >
-            <option value="png">PNG</option>
-            <option value="jpg">JPG</option>
-            <option value="webp">WebP</option>
-            <option value="gif">GIF</option>
-          </select>
-        </div>
+      <div className={styles.formGroup}>
+        <label>Target Format:</label>
+        <select
+          value={format}
+          onChange={(e) => {
+            setFormat(e.target.value);
+            setConvertedImage(null);
+          }}
+          disabled={isLoading}
+        >
+          <option value="png">PNG</option>
+          <option value="jpg">JPG</option>
+          <option value="webp">WebP</option>
+          <option value="gif">GIF</option>
+        </select>
+      </div>
 
-        <button type="submit" disabled={isLoading}>
-          {isLoading ? 'Converting...' : 'Convert'}
-        </button>
-      </form>
+      <button
+        type="button"
+        onClick={handleSubmit}
+        className={styles.convertBtn}
+        disabled={isLoading || !file}
+      >
+        {isLoading ? 'Converting...' : 'Convert'}
+      </button>
 
-      {error && <div className={styles.error_message}>{error}</div>}
+      {error && <div className={styles.error}>{error}</div>}
 
       {convertedImage && (
-        <div className={styles.result_section}>
-          <h2>Converted Image</h2>
-          <img src={convertedImage.url} alt="Converted preview" />
+        <div className={styles.resultSection}>
+          <div className={styles.imageContainer}>
+            <p className={styles.imageContainerTitle}>Converted Image ({format.toUpperCase()})</p>
+            <div className={styles.imageWrapper}>
+              <img
+                src={convertedImage.url}
+                alt="Converted preview"
+                className={styles.previewImage}
+              />
+            </div>
+          </div>
           <button
             onClick={handleDownload}
-            className={styles.download_button}
+            className={styles.downloadBtn}
           >
             Download {convertedImage.format.toUpperCase()}
           </button>
         </div>
       )}
+
       <Content />
     </div>
   );

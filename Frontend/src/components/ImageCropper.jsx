@@ -120,11 +120,15 @@ const ImageCropper = () => {
       <div className={styles.fileInputContainer}>
         <input
           type="file"
+          id="file"
           accept="image/*"
           onChange={handleFileChange}
           ref={fileInputRef}
           className={styles.fileInput}
         />
+        <label htmlFor="file" className={styles.fileInputLabel}>
+          Select Image
+        </label>
       </div>
 
       {error && (
@@ -134,7 +138,7 @@ const ImageCropper = () => {
       )}
 
       <div className={styles.cropperWrapper}>
-        {image && (
+        {image ? (
           <Cropper
             src={image}
             className={styles.cropper}
@@ -153,6 +157,10 @@ const ImageCropper = () => {
             crop={handleCropMove}
             cropmove={handleCropMove}
           />
+        ) : (
+          <div className={styles.previewPlaceholder}>
+            Select an image to begin cropping
+          </div>
         )}
       </div>
 

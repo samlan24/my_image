@@ -1,13 +1,14 @@
 import { Link } from 'react-router-dom';
 import styles from '../styles/Desktop-nav.module.css';
+import Logo from '../assets/cover.png';
 
 
 const Desktop_Nav = () => {
   return (
     <div className={styles.desktop_nav}>
-        <div className='logo'>
+        <div className={styles.logo}>
             <Link to="/">
-                <h1>Image Tool</h1>
+                <img src={Logo} alt="mepixie" />
             </Link>
         </div>
         <div className={styles.nav}>

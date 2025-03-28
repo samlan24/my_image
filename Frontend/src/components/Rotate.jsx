@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import Content from './Content';
+import styles from '../styles/Rotate.module.css'
 
 const ImageRotator = () => {
   const [file, setFile] = useState(null);
@@ -139,54 +140,69 @@ const ImageRotator = () => {
   }, [previewUrl]);
 
   return (
-    <div className="image-rotator">
-      <h2>Image Rotator</h2>
+    <div className={styles.container}>
+      <h2 className={styles.title}>Image Rotator</h2>
 
-      <div className="file-input">
+      <div className={styles.fileInputContainer}>
         <input
           type="file"
           id="file"
           ref={fileInputRef}
           accept=".jpg,.jpeg,.png,.webp"
           onChange={handleFileChange}
-          style={{ display: 'none' }}
+          className={styles.fileInput}
         />
-        <button onClick={() => fileInputRef.current?.click()}>
+        <label htmlFor="file" className={styles.fileInputLabel}>
           Select Image
-        </button>
-        {file && <span>{file.name}</span>}
+        </label>
+        {file && <span className={styles.fileName}>{file.name}</span>}
       </div>
 
-      {previewUrl && (
-        <div className="preview-container">
-          <div className="image-wrapper">
-            <img
-              src={previewUrl}
-              alt="Preview"
-              style={{ transform: `rotate(${angle}deg)` }}
-            />
+      <div className={styles.previewContainer}>
+        {previewUrl ? (
+          <>
+            <div className={styles.imageWrapper}>
+              <img
+                src={previewUrl}
+                alt="Preview"
+                className={styles.previewImage}
+                style={{ transform: `rotate(${angle}deg)` }}
+              />
+            </div>
+            <div className={styles.rotationControls}>
+              <button
+                onClick={rotateLeft}
+                disabled={!file}
+                className={styles.rotationButton}
+              >
+                ↺ Left (-90°)
+              </button>
+              <span className={styles.angleDisplay}>Current Angle: {angle}°</span>
+              <button
+                onClick={rotateRight}
+                disabled={!file}
+                className={styles.rotationButton}
+              >
+                ↻ Right (+90°)
+              </button>
+            </div>
+          </>
+        ) : (
+          <div className={styles.previewPlaceholder}>
+            Select an image to preview
           </div>
-          <div className="rotation-controls">
-            <button onClick={rotateLeft} disabled={!file}>
-              ↺ Left (-90°)
-            </button>
-            <span>Current Angle: {angle}°</span>
-            <button onClick={rotateRight} disabled={!file}>
-              ↻ Right (+90°)
-            </button>
-          </div>
-        </div>
-      )}
+        )}
+      </div>
 
       <button
         onClick={handleDownload}
         disabled={isLoading || !file}
-        className="download-btn"
+        className={styles.downloadBtn}
       >
         {isLoading ? 'Processing...' : 'Download Rotated Image'}
       </button>
 
-      {error && <div className="error">{error}</div>}
+      {error && <div className={styles.error}>{error}</div>}
       <Content />
     </div>
   );

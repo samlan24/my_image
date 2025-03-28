@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Content from './Content';
+import styles from '../styles/Compress.module.css';
 
 const ImageCompressor = () => {
   const [preview, setPreview] = useState(null);
@@ -11,9 +12,9 @@ const ImageCompressor = () => {
   const [uploadedPreview, setUploadedPreview] = useState(null);
 
   const [options, setOptions] = useState({
-    quality: 85,
+    quality: 30,
     lossless: false,
-    optimize: true,
+    optimize: false,
     progressive: false,
     dither: false,
     strip_metadata: true,
@@ -102,28 +103,63 @@ const ImageCompressor = () => {
   };
 
   return (
-    <div className="compressor-container">
-      <h1>Advanced Image Compressor</h1>
+    <div className={styles.container}>
+      <h1 className={styles.title}>Advanced Image Compressor</h1>
 
-      <div className="upload-section">
+      <div className={styles.fileInputContainer}>
         <input
           type="file"
+          id="file"
           accept="image/*"
           onChange={handleFileChange}
           disabled={isLoading}
+          className={styles.fileInput}
         />
-        {fileName && <p>Uploaded: {fileName}</p>}
+        <label htmlFor="file" className={styles.fileInputLabel}>
+          Select Image
+        </label>
+        {fileName && <span className={styles.fileName}>Uploaded: {fileName}</span>}
       </div>
 
-      {uploadedPreview && (
-        <div className="uploaded-preview">
-          <p>Preview:</p>
-          <img src={uploadedPreview} alt="Uploaded Preview" />
+      <div className={styles.previewSection}>
+        <div className={styles.imageContainer}>
+          <p className={styles.imageContainerTitle}>Original Image</p>
+          {uploadedPreview ? (
+            <div className={styles.imageWrapper}>
+              <img
+                src={uploadedPreview}
+                alt="Uploaded Preview"
+                className={styles.previewImage}
+              />
+            </div>
+          ) : (
+            <div className={styles.imageWrapper}>
+              <p>No image selected</p>
+            </div>
+          )}
         </div>
-      )}
 
-      <div className="controls-section">
-        <div className="control-group">
+        {preview && !isLoading && (
+          <div className={styles.imageContainer}>
+            <p className={styles.imageContainerTitle}>Compressed Result</p>
+            <div className={styles.compressedImageWrapper}>
+              <img
+                src={preview.image}
+                alt="Compressed Preview"
+                className={styles.previewImage}
+              />
+            </div>
+            <div className={styles.stats}>
+              <p>Original: {stats.original} KB</p>
+              <p>Compressed: {stats.compressed} KB</p>
+              <p>Reduction: {stats.ratio}%</p>
+            </div>
+          </div>
+        )}
+      </div>
+
+      <div className={styles.controlsSection}>
+        <div className={styles.controlGroup}>
           <label>Quality: {options.quality}%</label>
           <input
             type="range"
@@ -134,7 +170,7 @@ const ImageCompressor = () => {
           />
         </div>
 
-        <div className="control-group">
+        <div className={styles.controlGroup}>
           <label>
             <input
               type="checkbox"
@@ -145,7 +181,7 @@ const ImageCompressor = () => {
           </label>
         </div>
 
-        <div className="control-group">
+        <div className={styles.controlGroup}>
           <label>
             <input
               type="checkbox"
@@ -156,7 +192,7 @@ const ImageCompressor = () => {
           </label>
         </div>
 
-        <div className="control-group">
+        <div className={styles.controlGroup}>
           <label>
             <input
               type="checkbox"
@@ -167,7 +203,7 @@ const ImageCompressor = () => {
           </label>
         </div>
 
-        <div className="control-group">
+        <div className={styles.controlGroup}>
           <label>
             <input
               type="checkbox"
@@ -177,43 +213,24 @@ const ImageCompressor = () => {
             Dithering (PNG)
           </label>
         </div>
-
-        <div className="control-group">
-          <label>JPEG Subsample:</label>
-          <select
-            value={options.subsampling}
-            onChange={(e) => setOptions({...options, subsampling: e.target.value})}
-          >
-            <option value="0">Best (4:4:4)</option>
-            <option value="1">Balanced (4:2:2)</option>
-            <option value="2">Smallest (4:2:0)</option>
-          </select>
-        </div>
       </div>
 
-      <button onClick={handleCompress} className="compress-btn" disabled={isLoading || !file}>
+      <button
+        onClick={handleCompress}
+        className={styles.compressBtn}
+        disabled={isLoading || !file}
+      >
         {isLoading ? 'Compressing...' : 'Compress'}
       </button>
 
-      {error && <div className="error">{error}</div>}
+      {error && <div className={styles.error}>{error}</div>}
 
       {preview && !isLoading && (
-        <div className="results-section">
-          <div className="image-comparison">
-            <img src={preview.image} alt="Compressed Preview" />
-          </div>
-
-          <div className="stats">
-            <p>Original: {stats.original} KB</p>
-            <p>Compressed: {stats.compressed} KB</p>
-            <p>Reduction: {stats.ratio}%</p>
-          </div>
-
-          <button onClick={handleDownload} className="download-btn">
-            Download Compressed Image
-          </button>
-        </div>
+        <button onClick={handleDownload} className={styles.downloadBtn}>
+          Download Compressed Image
+        </button>
       )}
+
       <Content />
     </div>
   );
