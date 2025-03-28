@@ -49,7 +49,7 @@ def process_image(file, options):
     save_params = {
         "format": original_format,
         "optimize": options.get("optimize", True),
-        "quality": options.get("quality", 85)
+        "quality": options.get("quality", 30)
     }
 
     # Format-specific settings
@@ -90,7 +90,7 @@ def compress_image():
 
         # Process with user options
         result = process_image(file, {
-            "quality": int(request.form.get("quality", 85)),
+            "quality": int(request.form.get("quality", 30)),
             "lossless": request.form.get("lossless") == "true",
             "optimize": request.form.get("optimize") != "false",
             "progressive": request.form.get("progressive") == "true",
