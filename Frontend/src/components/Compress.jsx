@@ -178,17 +178,6 @@ const ImageCompressor = () => {
         </div>
 
         <div className="control-group">
-          <label>
-            <input
-              type="checkbox"
-              checked={options.strip_metadata}
-              onChange={(e) => setOptions({...options, strip_metadata: e.target.checked})}
-            />
-            Remove Metadata
-          </label>
-        </div>
-
-        <div className="control-group">
           <label>JPEG Subsample:</label>
           <select
             value={options.subsampling}

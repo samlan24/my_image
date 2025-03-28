@@ -5,6 +5,7 @@ import Convert from './components/Convert';
 import Desktop_Nav from './components/Desktop_Nav';
 import ImageCropper from './components/ImageCropper';
 import ImageCompressor from './components/Compress';
+import ImageRotator from './components/Rotate';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Route path="/convert" element={<Convert />} />
             <Route path="/crop" element={<ImageCropper />} />
             <Route path="/compress" element={<ImageCompressor />} />
+            <Route path="/rotate" element={<ImageRotator />} />
             <Route path="/" element={<Home />} />
           </Routes>
         </div>
