@@ -1,0 +1,94 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: var(--primary-color);
+}
+
+.fileInputLabel {
+  margin-top: 1.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--button-color);
+  color: var(--primary-color);
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  border: 1px solid #555;
+}
+
+.fileInputLabel :hover {
+  background-color: var(--button-hover-color);
+}
+
+.fileInput {
+  width: 80%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 2px solid #555; /* Blue border */
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s ease-in-out;
+  background-color: #f8f9fa; /* Light gray background */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.fileInput:focus {
+  border-color: #555; /* Darker blue on focus */
+  background-color: #ffffff;
+  box-shadow: 0px 4px 10px rgba(0, 123, 255, 0.3);
+}
+
+.thumbnailContainer {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .thumbnailGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    gap: 20px; /* Space between thumbnails */
+    justify-content: center;
+  }
+
+  .thumbnailItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .thumbnailImage {
+    width: 280px; /* Adjusted for layout */
+    max-width: 100%;
+    border-radius: 12px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .downloadButton {
+    margin-top: 10px;
+    padding: 12px 18px;
+    border: 1px solid var(--button-color);
+    color: var(--primary-color);
+    background-color: var(--accent-color);
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .downloadButton:hover {
+    background-color: var(--button-hover-color);
+    box-shadow: 0px 4px 10px rgba(0, 123, 255, 0.4);
+  }
