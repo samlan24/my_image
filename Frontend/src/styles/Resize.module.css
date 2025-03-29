@@ -24,7 +24,7 @@
   }
 
   .placeholder {
-    color: #95a5a6;
+    color: var(--primary-color);
     font-style: italic;
   }
 

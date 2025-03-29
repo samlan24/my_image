@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import Cropper from 'react-cropper';
 import 'cropperjs/dist/cropper.min.css';
 import styles from '../styles/ImageCropper.module.css';
-import Content from './Content';
+
 
 const ImageCropper = () => {
   const [image, setImage] = useState(null);
@@ -165,7 +165,7 @@ const ImageCropper = () => {
           />
         ) : (
           <div className={styles.previewPlaceholder}>
-            Select an image to begin cropping
+            <p>Select an image to begin cropping</p>
           </div>
         )}
       </div>
@@ -217,7 +217,6 @@ const ImageCropper = () => {
           Download
         </button>
       </div>
-      <Content />
     </div>
   );
 };

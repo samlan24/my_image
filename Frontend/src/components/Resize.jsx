@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import styles from "../styles/Resize.module.css";
-import Content from "./Content";
+
 
 const socialMediaPresets = {
     instagram_post: "Instagram Post (1080×1080)",
@@ -200,9 +200,6 @@ const Resize = () => {
                     </button>
                 </div>
 
-            </div>
-            <div className={styles.contentSection}>
-                <Content />
             </div>
         </div>
     );

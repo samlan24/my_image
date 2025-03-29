@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from '../styles/Youtube.module.css';
-import Content from './Content';
+
 
 
 const YouTubeThumbnailDownloader = () => {
@@ -120,7 +120,6 @@ const YouTubeThumbnailDownloader = () => {
                 </div>
             )}
 
-            <Content />
         </div>
     );
 };

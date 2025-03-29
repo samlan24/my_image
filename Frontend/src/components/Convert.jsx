@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import axios from 'axios';
 import styles from '../styles/Convert.module.css';
 import { useNavigate } from 'react-router-dom';
-import Content from './Content';
+import ConvertContent from './ConvertContent';
 
 function Convert() {
   const [file, setFile] = useState(null);
@@ -76,8 +76,10 @@ function Convert() {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Image Converter</h1>
-
+      <div className={styles.title_section}>
+        <h1 className={styles.title}>Image Converter</h1>
+        <p>Quickly convert images between JPG, PNG, and WEBP formats with our free online image converter</p>
+      </div>
       <div className={styles.fileInputContainer}>
         <input
           type="file"
@@ -108,7 +110,8 @@ function Convert() {
             </div>
           ) : (
             <div className={styles.imageWrapper}>
-              <p>No image selected</p>
+              <p>No image selected
+              </p>
             </div>
           )}
         </div>
@@ -163,7 +166,7 @@ function Convert() {
         </div>
       )}
 
-      <Content />
+      <ConvertContent />
     </div>
   );
 }

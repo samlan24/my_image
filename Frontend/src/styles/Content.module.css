@@ -1,0 +1,41 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.content ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.features {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    gap: 20px; /* Space between columns */
+    align-items: center; /* Align content vertically */
+    margin-top: 2rem;
+  }
+
+  .feature_image img {
+    width: 100%; /* Ensure the image fills its container */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Remove extra spacing under image */
+  }
+
+  .feature_text {
+    width: 100%; /* Ensure text takes full width */
+    height: 100%; /* Ensure text takes full height */
+  }
+
+  .feature_text ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .feature_text li {
+    font-size: 1rem;
+  }

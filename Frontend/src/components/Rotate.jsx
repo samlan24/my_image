@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
-import Content from './Content';
 import styles from '../styles/Rotate.module.css'
 
 const ImageRotator = () => {
@@ -246,7 +245,6 @@ const ImageRotator = () => {
             </button>
 
             {error && <div className={styles.error}>{error}</div>}
-            <Content />
         </div>
     );
 };
