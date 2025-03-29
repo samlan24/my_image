@@ -13,7 +13,6 @@ const Desktop_Nav = () => {
         </div>
         <div className={styles.nav}>
             <Link to='/convert' className={styles.nav_item}>CONVERT IMAGES</Link>
-            <Link to='/compress' className={styles.nav_item}>COMPRESS IMAGES</Link>
             <Link to='/crop' className={styles.nav_item}>CROP IMAGES</Link>
             <Link to='/rotate' className={styles.nav_item}>ROTATE IMAGES</Link>
             <Link to='/resize' className={styles.nav_item}>RESIZE IMAGES</Link>
