@@ -1,8 +1,7 @@
 from . import convert
-from flask import Flask, request, send_file
+from flask import Flask, request, send_file, jsonify
 from PIL import Image, UnidentifiedImageError
 import io
-import imghdr
 
 ALLOWED_FORMATS = {"png", "jpg", "jpeg", "webp", "gif"}
 QUALITY_PARAMS = {
@@ -18,48 +17,31 @@ def is_allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_FORMATS
 
-def is_valid_image(stream):
-    """Verify that the file is actually an image"""
-    header = stream.read(1024)
-    stream.seek(0)
-    format = imghdr.what(None, header)
-    return format is not None
-
 @convert.route("/", methods=["POST"])
 def convert_image():
     # Check if file was uploaded
     if "file" not in request.files:
-        return {"error": "No file uploaded"}, 400
+        return jsonify({"error": "No file uploaded"}), 400
 
     file = request.files["file"]
 
     # Check if file has a filename
     if file.filename == '':
-        return {"error": "No selected file"}, 400
+        return jsonify({"error": "No selected file"}), 400
 
     # Check file extension
     if not is_allowed_file(file.filename):
-        return {"error": f"Invalid file type. Allowed: {', '.join(ALLOWED_FORMATS)}"}, 400
-
-    # Verify the file is actually an image
-    if not is_valid_image(file.stream):
-        return {"error": "Uploaded file is not a valid image"}, 400
+        return jsonify({"error": f"Invalid file type. Allowed: {', '.join(ALLOWED_FORMATS)}"}), 400
 
     target_format = request.form.get("format", "").lower()
 
+    # Validate target format
     if target_format not in ALLOWED_FORMATS:
-        return {"error": f"Invalid format. Allowed: {', '.join(ALLOWED_FORMATS)}"}, 400
+        return jsonify({"error": f"Invalid format. Allowed: {', '.join(ALLOWED_FORMATS)}"}), 400
 
     try:
-        # Verify the image can be opened by PIL
-        file.stream.seek(0)
-        image = Image.open(file.stream)
-
-        # Verify the image is valid by attempting to load it
-        image.verify()
-
-        # Reopen the image since verify() closes it
-        file.stream.seek(0)
+        # Open the image directly from the uploaded stream
+        file.stream.seek(0)  # Ensure the stream is at the beginning
         image = Image.open(file.stream)
 
         # Handle format-specific conversions
@@ -68,6 +50,7 @@ def convert_image():
         elif image.mode == "P" and target_format != "gif":
             image = image.convert("RGBA" if "transparency" in image.info else "RGB")
 
+        # Save the converted image to an in-memory buffer
         img_io = io.BytesIO()
         save_params = {
             "format": target_format,
@@ -80,9 +63,15 @@ def convert_image():
         image.save(img_io, **save_params)
         img_io.seek(0)
 
-        return send_file(img_io, mimetype=f"image/{target_format}")
+        # Return the converted image as a response
+        return send_file(
+            img_io,
+            mimetype=f"image/{target_format}",
+            as_attachment=True,
+            download_name=f"converted.{target_format}"
+        )
 
     except UnidentifiedImageError:
-        return {"error": "Cannot identify image file"}, 400
+        return jsonify({"error": "Cannot identify image file"}), 400
     except Exception as e:
-        return {"error": str(e)}, 500
+        return jsonify({"error": str(e)}), 500

@@ -10,14 +10,12 @@ const ImageCompressor = () => {
   const [file, setFile] = useState(null);
   const [fileName, setFileName] = useState("");
   const [uploadedPreview, setUploadedPreview] = useState(null);
-  const [uploading, setUploading] = useState(false); // New state for uploading indicator
 
   const [options, setOptions] = useState({
-    quality: 30,
-    lossless: false,
-    optimize: false,
+    quality: 70,
+    lossless: true,
+    optimize: true,
     progressive: false,
-    dither: false,
     strip_metadata: true,
     subsampling: "1"
   });
@@ -26,14 +24,12 @@ const ImageCompressor = () => {
     const selectedFile = e.target.files[0];
     if (!selectedFile) return;
 
-    setUploading(true); // Set uploading to true when file is selected
     setFile(selectedFile);
     setFileName(selectedFile.name);
 
     const reader = new FileReader();
     reader.onload = (event) => {
       setUploadedPreview(event.target.result);
-      setTimeout(() => setUploading(false), 1000); // Reset uploading after 1 second
     };
     reader.readAsDataURL(selectedFile);
   };
@@ -126,9 +122,7 @@ const ImageCompressor = () => {
 
       <div className={styles.previewSection}>
         <div className={styles.imageContainer}>
-          {uploading ? (
-            <div className={styles.loadingIndicator}>Uploading...</div>
-          ) : uploadedPreview ? (
+          {uploadedPreview ? (
             <div className={styles.imageWrapper}>
               <img
                 src={uploadedPreview}
@@ -207,16 +201,6 @@ const ImageCompressor = () => {
           </label>
         </div>
 
-        <div className={styles.controlGroup}>
-          <label>
-            <input
-              type="checkbox"
-              checked={options.dither}
-              onChange={(e) => setOptions({...options, dither: e.target.checked})}
-            />
-            Dithering (PNG)
-          </label>
-        </div>
       </div>
 
       <button

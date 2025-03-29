@@ -1,10 +1,7 @@
 from flask import Flask, request, send_file, jsonify
 from PIL import Image, UnidentifiedImageError
 import io
-import imghdr
-import os
 from . import rotate
-
 ALLOWED_FORMATS = {"png", "jpg", "jpeg", "webp"}
 QUALITY_PARAMS = {
     "jpg": {"quality": 95, "subsampling": 0},
@@ -19,14 +16,8 @@ def is_allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_FORMATS
 
-def is_valid_image(stream):
-    """Verify that the file is actually an image"""
-    header = stream.read(1024)
-    stream.seek(0)
-    format = imghdr.what(None, header)
-    return format is not None and format.lower() in ALLOWED_FORMATS
 
-@rotate.route('/', methods=['POST'])
+@rotate.route('/', methods=['POST']) # Assuming this is already defined
 def rotate_img():
     # Check if file was uploaded
     if 'file' not in request.files:
@@ -42,10 +33,6 @@ def rotate_img():
     if not is_allowed_file(file.filename):
         return jsonify({'error': 'File type not allowed'}), 400
 
-    # Verify the file is actually an image
-    if not is_valid_image(file.stream):
-        return jsonify({'error': 'Invalid image file'}), 400
-
     # Get rotation angle
     try:
         angle = int(request.form.get('angle', 0))
@@ -54,8 +41,9 @@ def rotate_img():
 
     try:
         # Open the image
-        file.stream.seek(0)
+        file.stream.seek(0)  # Ensure stream is at the beginning
         img = Image.open(file.stream)
+
 
         # Rotate the image
         rotated_img = img.rotate(-angle, expand=True)
@@ -100,8 +88,6 @@ def preview_img():
     if not is_allowed_file(file.filename):
         return jsonify({'error': 'File type not allowed'}), 400
 
-    if not is_valid_image(file.stream):
-        return jsonify({'error': 'Invalid image file'}), 400
 
     try:
         angle = int(request.form.get('angle', 0))
@@ -109,7 +95,7 @@ def preview_img():
         return jsonify({'error': 'Invalid rotation angle'}), 400
 
     try:
-        file.stream.seek(0)
+        file.stream.seek(0) # Ensure stream is at the beginning
         img = Image.open(file.stream)
         rotated_img = img.rotate(-angle, expand=True)
 
@@ -123,6 +109,7 @@ def preview_img():
             mimetype='image/jpeg'
         )
 
+    except UnidentifiedImageError:
+        return jsonify({'error': 'Invalid image file'}), 400
     except Exception as e:
         return jsonify({'error': str(e)}), 500
-
