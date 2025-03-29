@@ -7,7 +7,7 @@ import ImageCropper from './components/ImageCropper';
 import ImageCompressor from './components/Compress';
 import ImageRotator from './components/Rotate';
 import Resize from './components/Resize';
-import Youtube from './components/Youtube';
+import YouTubeThumbnailDownloader from './components/Youtube';
 
 
 
@@ -23,7 +23,7 @@ function App() {
             <Route path="/compress" element={<ImageCompressor />} />
             <Route path="/rotate" element={<ImageRotator />} />
             <Route path="/resize" element={<Resize />} />
-            <Route path="/youtube" element={<Youtube />} />
+            <Route path="/youtube" element={<YouTubeThumbnailDownloader />} />
           </Routes>
         </div>
       </Router>
