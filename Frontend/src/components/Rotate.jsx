@@ -13,6 +13,7 @@ const ImageRotator = () => {
     const [imgHeight, setImgHeight] = useState(0);
     const fileInputRef = useRef(null);
     const downloadUrlRef = useRef(null); // Ref to track download URL
+    const [uploading, setUploading] = useState(false); // New state for uploading indicator
 
     useEffect(() => {
         if (!file) return;
@@ -32,11 +33,13 @@ const ImageRotator = () => {
             if (previewUrl) URL.revokeObjectURL(previewUrl);
             if (downloadUrlRef.current) URL.revokeObjectURL(downloadUrlRef.current);
 
+            setUploading(true); // Set uploading to true when file is selected
             setFile(selectedFile);
             setAngle(0);
             setError('');
             // Create preview URL
             setPreviewUrl(URL.createObjectURL(selectedFile));
+            setTimeout(() => setUploading(false), 1000); // Reset uploading after 1 second
         }
     };
 
@@ -192,7 +195,9 @@ const ImageRotator = () => {
             </div>
 
             <div className={styles.previewContainer}>
-                {previewUrl ? (
+                {uploading ? (
+                    <div className={styles.loadingIndicator}>Uploading...</div>
+                ) : previewUrl ? (
                     <>
                         <div className={styles.imageWrapper}>
                             <img

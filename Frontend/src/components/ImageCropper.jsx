@@ -15,6 +15,7 @@ const ImageCropper = () => {
     width: 0,
     height: 0
   });
+  const [uploading, setUploading] = useState(false); // New state for uploading indicator
   const cropperRef = useRef(null);
   const fileInputRef = useRef(null);
 
@@ -27,11 +28,14 @@ const ImageCropper = () => {
       return;
     }
 
+    setUploading(true); // Set uploading to true when file is selected
+
     const reader = new FileReader();
     reader.onload = () => {
       setImage(reader.result);
       setCroppedImage(null);
       setError(null);
+      setTimeout(() => setUploading(false), 1000); // Reset uploading after 1 second
     };
     reader.readAsDataURL(file);
   };
@@ -138,7 +142,9 @@ const ImageCropper = () => {
       )}
 
       <div className={styles.cropperWrapper}>
-        {image ? (
+        {uploading ? (
+          <div className={styles.loadingIndicator}>Uploading...</div>
+        ) : image ? (
           <Cropper
             src={image}
             className={styles.cropper}

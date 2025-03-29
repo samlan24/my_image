@@ -8,6 +8,7 @@ function Convert() {
   const [file, setFile] = useState(null);
   const [format, setFormat] = useState('png');
   const [isLoading, setIsLoading] = useState(false);
+  const [uploading, setUploading] = useState(false);
   const [error, setError] = useState('');
   const [convertedImage, setConvertedImage] = useState(null);
   const fileInputRef = useRef(null);
@@ -57,18 +58,20 @@ function Convert() {
     link.click();
     document.body.removeChild(link);
 
-    // Cleanup
     URL.revokeObjectURL(convertedImage.url);
     setConvertedImage(null);
     setFile(null);
     if (fileInputRef.current) {
-      fileInputRef.current.value = ''; // Clear the file input
+      fileInputRef.current.value = '';
     }
   };
 
   const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
+    setUploading(true);
+    const selectedFile = e.target.files[0];
+    setFile(selectedFile);
     setConvertedImage(null);
+    setTimeout(() => setUploading(false), 1000);
   };
 
   return (
@@ -93,7 +96,9 @@ function Convert() {
 
       <div className={styles.previewSection}>
         <div className={styles.imageContainer}>
-          {file ? (
+          {uploading ? (
+            <div className={styles.loadingIndicator}>Uploading...</div>
+          ) : file ? (
             <div className={styles.imageWrapper}>
               <img
                 src={URL.createObjectURL(file)}

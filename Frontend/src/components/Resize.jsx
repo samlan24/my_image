@@ -18,6 +18,7 @@ const Resize = () => {
     const [preset, setPreset] = useState("");
     const [previewUrl, setPreviewUrl] = useState(null);
     const [buttonState, setButtonState] = useState("resize");
+    const [uploading, setUploading] = useState(false); // New state for uploading indicator
     const fileInputRef = useRef();
 
     useEffect(() => {
@@ -33,9 +34,12 @@ const Resize = () => {
     const handleImageChange = (e) => {
         const file = e.target.files[0];
         if (file) {
+            setUploading(true); // Set uploading to true when file is selected
             setImage(file);
             setPreviewUrl(URL.createObjectURL(file));
             setButtonState("resize");
+
+            setTimeout(() => setUploading(false), 1000); // Reset uploading after 1 second
         }
     };
 
@@ -57,7 +61,6 @@ const Resize = () => {
         }));
         setPreset(""); // Clear preset when custom dimensions are used
     };
-
 
     const handleResize = async () => {
         if (!image) return alert("Please upload an image.");
@@ -115,88 +118,90 @@ const Resize = () => {
 
     return (
         <div className={styles.resizeContainer}>
-        <div className={styles.container}>
-            <div className={styles.preview}>
-                {previewUrl ? (
-                    <img
-                        src={previewUrl}
-                        alt="Preview"
-                        className={styles.previewImage}
-                    />
-                ) : (
-                    <div className={styles.placeholder}>No image selected</div>
-                )}
-            </div>
-
-            <div className={styles.controls}>
-                <h1 className={styles.title}>Image Resizer</h1>
-
-                <div className={styles.uploadSection}>
-                    <button
-                        className={styles.uploadButton}
-                        onClick={() => fileInputRef.current.click()}
-                    >
-                        {image ? "Change Image" : "Select Image"}
-                    </button>
-                    <input
-                        type="file"
-                        ref={fileInputRef}
-                        onChange={handleImageChange}
-                        accept="image/*"
-                        style={{ display: "none" }}
-                    />
+            <div className={styles.container}>
+                <div className={styles.preview}>
+                    {uploading ? (
+                        <div className={styles.loadingIndicator}>Uploading...</div>
+                    ) : previewUrl ? (
+                        <img
+                            src={previewUrl}
+                            alt="Preview"
+                            className={styles.previewImage}
+                        />
+                    ) : (
+                        <div className={styles.placeholder}>No image selected</div>
+                    )}
                 </div>
 
-                <div className={styles.presetSection}>
-                    <label className={styles.label}>Social Media Preset:</label>
-                    <select
-                        className={styles.select}
-                        value={preset}
-                        onChange={handlePresetChange}
-                    >
-                        <option value="">Custom Size</option>
-                        {Object.keys(socialMediaPresets).map((key) => (
-                            <option key={key} value={key}>{socialMediaPresets[key]}</option>
-                        ))}
-                    </select>
-                </div>
+                <div className={styles.controls}>
+                    <h1 className={styles.title}>Image Resizer</h1>
 
-                <div className={styles.dimensionSection}>
-                    <label className={styles.label}>Custom Dimensions:</label>
-                    <div className={styles.dimensionInputs}>
+                    <div className={styles.uploadSection}>
+                        <button
+                            className={styles.uploadButton}
+                            onClick={() => fileInputRef.current.click()}
+                        >
+                            {image ? "Change Image" : "Select Image"}
+                        </button>
                         <input
-                            type="number"
-                            className={styles.input}
-                            placeholder="Width"
-                            value={dimensions.width}
-                            onChange={(e) => handleDimensionChange(e, "width")}
-                            disabled={!!preset}
+                            type="file"
+                            ref={fileInputRef}
+                            onChange={handleImageChange}
+                            accept="image/*"
+                            style={{ display: "none" }}
                         />
-                        <span className={styles.dimensionSeparator}>×</span>
-                        <input
-                            type="number"
-                            className={styles.input}
-                            placeholder="Height"
-                            value={dimensions.height}
-                            onChange={(e) => handleDimensionChange(e, "height")}
-                            disabled={!!preset}
-                        />
-                        <span className={styles.dimensionUnit}>px</span>
                     </div>
+
+                    <div className={styles.presetSection}>
+                        <label className={styles.label}>Social Media Preset:</label>
+                        <select
+                            className={styles.select}
+                            value={preset}
+                            onChange={handlePresetChange}
+                        >
+                            <option value="">Custom Size</option>
+                            {Object.keys(socialMediaPresets).map((key) => (
+                                <option key={key} value={key}>{socialMediaPresets[key]}</option>
+                            ))}
+                        </select>
+                    </div>
+
+                    <div className={styles.dimensionSection}>
+                        <label className={styles.label}>Custom Dimensions:</label>
+                        <div className={styles.dimensionInputs}>
+                            <input
+                                type="number"
+                                className={styles.input}
+                                placeholder="Width"
+                                value={dimensions.width}
+                                onChange={(e) => handleDimensionChange(e, "width")}
+                                disabled={!!preset}
+                            />
+                            <span className={styles.dimensionSeparator}>×</span>
+                            <input
+                                type="number"
+                                className={styles.input}
+                                placeholder="Height"
+                                value={dimensions.height}
+                                onChange={(e) => handleDimensionChange(e, "height")}
+                                disabled={!!preset}
+                            />
+                            <span className={styles.dimensionUnit}>px</span>
+                        </div>
+                    </div>
+
+                    <button
+                        className={`${styles.resizeButton} ${buttonState === "downloading" ? styles.processing : ""
+                            }`}
+                        onClick={handleResize}
+                        disabled={buttonState === "downloading" || !image}
+                    >
+                        {getButtonText()}
+                    </button>
                 </div>
 
-                <button
-                    className={`${styles.resizeButton} ${buttonState === "downloading" ? styles.processing : ""
-                        }`}
-                    onClick={handleResize}
-                    disabled={buttonState === "downloading" || !image}
-                >
-                    {getButtonText()}
-                </button>
             </div>
-
-        </div>
-        <div className={styles.contentSection}>
+            <div className={styles.contentSection}>
                 <Content />
             </div>
         </div>
