@@ -13,8 +13,6 @@ def create_app():
     app.register_blueprint(convert)
     from .croping import crop
     app.register_blueprint(crop)
-    from .compression import compress
-    app.register_blueprint(compress)
     from .rotating import rotate
     app.register_blueprint(rotate)
     from .resizing import resize
