@@ -123,7 +123,6 @@ const ImageCompressor = () => {
 
       <div className={styles.previewSection}>
         <div className={styles.imageContainer}>
-          <p className={styles.imageContainerTitle}>Original Image</p>
           {uploadedPreview ? (
             <div className={styles.imageWrapper}>
               <img

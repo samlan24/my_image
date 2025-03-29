@@ -25,18 +25,18 @@
   .fileInputLabel {
     display: inline-block;
     padding: 0.75rem 1.5rem;
-    background-color: #e6f2ff;
-    color: #0066cc;
+    background-color: var( --button-color);
+    color: var(--primary-color);
     border-radius: 4px;
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.2s;
-    border: 1px solid #b3d1ff;
+    border: 1px solid #808080;
   }
 
   .fileInputLabel:hover {
-    background-color: #cce0ff;
+    background-color: var(--button-hover-color);
   }
 
   .fileName {
@@ -53,7 +53,7 @@
   .imageContainer {
     width: 100%;
     padding: 1rem;
-    background-color: #e6f7ff;
+    background-color: var(--card-color);
     border-radius: 8px;
     border: 1px solid #b3e0ff;
     margin-bottom: 1rem;
@@ -61,7 +61,7 @@
 
   .imageContainerTitle {
     font-size: 1.1rem;
-    color: #0066cc;
+    color: var(--primary-color);
     margin-bottom: 0.5rem;
     font-weight: 600;
   }
@@ -122,8 +122,8 @@
     display: block;
     margin: 1.5rem auto;
     padding: 0.75rem 1.5rem;
-    background-color: #0066cc;
-    color: white;
+    background-color: var(--button-color);
+    color: var(--primary-color);
     border: none;
     border-radius: 4px;
     font-size: 1rem;
@@ -133,7 +133,7 @@
   }
 
   .compressBtn:hover {
-    background-color: #0052a3;
+    background-color: var(--button-hover-color);
   }
 
   .compressBtn:disabled {
@@ -159,8 +159,8 @@
     display: block;
     margin: 1.5rem auto;
     padding: 0.75rem 1.5rem;
-    background-color: #00a86b;
-    color: white;
+    background-color: var(--button-hover-color);
+    color: var(--primary-color);
     border: none;
     border-radius: 4px;
     font-size: 1rem;
@@ -170,7 +170,7 @@
   }
 
   .downloadBtn:hover {
-    background-color: #008a5a;
+    background-color: var(--button-hover-color);
   }
 
   .error {

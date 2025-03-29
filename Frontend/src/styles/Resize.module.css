@@ -10,7 +10,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #f8f9fa;
+    background: var(--card-color);
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
@@ -53,8 +53,8 @@
 
   .uploadButton {
     padding: 12px;
-    background: #3498db;
-    color: white;
+    background: var(--button-color);
+    color: var(--primary-color);
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -63,7 +63,7 @@
   }
 
   .uploadButton:hover {
-    background: #2980b9;
+    background: var(--button-hover-color);
   }
 
   .presetSection, .dimensionSection {
@@ -105,8 +105,8 @@
 
   .resizeButton {
     padding: 12px;
-    background: #2ecc71;
-    color: white;
+    background: var(--button-hover-color);
+    color: var(--primary-color);
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -116,7 +116,7 @@
   }
 
   .resizeButton:hover {
-    background: #27ae60;
+    background: var(--button-hover-color)
   }
 
   .resizeButton:disabled {

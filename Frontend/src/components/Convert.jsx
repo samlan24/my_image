@@ -93,7 +93,6 @@ function Convert() {
 
       <div className={styles.previewSection}>
         <div className={styles.imageContainer}>
-          <p className={styles.imageContainerTitle}>Original Image</p>
           {file ? (
             <div className={styles.imageWrapper}>
               <img
