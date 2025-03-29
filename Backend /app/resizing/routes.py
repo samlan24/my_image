@@ -24,7 +24,7 @@ def resize_with_aspect_ratio(img, target_width, target_height):
     img = img.resize((new_width, new_height), Image.Resampling.LANCZOS)
 
     # Create a new image with target dimensions and paste the resized image
-    new_img = Image.new("RGB", (target_width, target_height), (255, 255, 255))
+    new_img = Image.new("RGB", (target_width, target_height), (0, 0, 0))
     new_img.paste(img, ((target_width - new_width) // 2, (target_height - new_height) // 2))
 
     return new_img

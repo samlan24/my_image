@@ -51,19 +51,13 @@ const Resize = () => {
 
     const handleDimensionChange = (e, dimension) => {
         const value = e.target.value;
-        if (dimension === "width") {
-            setDimensions({
-                width: value,
-                height: value ? Math.round(value / originalAspect) : ""
-            });
-        } else {
-            setDimensions({
-                height: value,
-                width: value ? Math.round(value * originalAspect) : ""
-            });
-        }
+        setDimensions(prev => ({
+            ...prev,
+            [dimension]: value
+        }));
         setPreset(""); // Clear preset when custom dimensions are used
     };
+
 
     const handleResize = async () => {
         if (!image) return alert("Please upload an image.");
